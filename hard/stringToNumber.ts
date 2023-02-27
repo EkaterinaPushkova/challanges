@@ -2,6 +2,7 @@
 
 type StringToNumber<RowMix extends string> =
   RowMix extends `${infer NumberRow extends number}` ? NumberRow : never;
+//infer return type of NumberRow
 
 type MyNumber = StringToNumber<"123">;
 
