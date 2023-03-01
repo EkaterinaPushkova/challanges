@@ -6,6 +6,8 @@
 // type camelCase2 = CamelCase<'HELLO_WORLD_WITH_TYPES'> // expected to be same as previous one
 
 type RemoveUnderscore<Str> = Str extends `${infer A}_${infer Rest}`
-  ? `${A}${Capitalize<RemoveUnderscore<Rest>>}`
+  ? Uppercase<Str> extends Str
+    ? RemoveUnderscore<Lowercase<Str>>
+    : `${A}${Capitalize<RemoveUnderscore<Rest>>}`
   : Str;
-type camelCase1 = RemoveUnderscore<"hello_world_with_types">;
+type camelCase1 = RemoveUnderscore<"HELLO_WORLD_WITH_TYPES">;
